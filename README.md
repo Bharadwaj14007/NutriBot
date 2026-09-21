@@ -17,7 +17,7 @@ NutriBot is a full-stack AI-powered web application designed to act as your pers
 
 ### Prerequisites
 - Node.js installed on your machine.
-- MongoDB running locally or a MongoDB Atlas URI.
+- MongoDB running locally or a MongoDB Atlas URI. If you do not have MongoDB installed, the backend automatically spins up a temporary in-memory MongoDB instance for local testing.
 - Google Gemini API Key.
 
 ### 1. Backend Setup
@@ -80,3 +80,21 @@ Enjoy planning your diet with NutriBot!
 
 # NutriBot (Remote description)
 AI Based web application to analyse and plan daily life food diet
+
+## Deploy on Vercel
+
+This repository is configured as a Vercel monorepo: the Vite frontend is built from
+`frontend/`, while `/api/*` requests are routed to the Express serverless function
+in `backend/server.js`.
+
+In the Vercel project settings, add these environment variables:
+
+```text
+MONGODB_URI=<your MongoDB Atlas connection string>
+JWT_SECRET=<a long random secret>
+GEMINI_API_KEY=<your Google Gemini API key>
+```
+
+Deploy from the repository root. The frontend uses same-origin `/api` requests in
+production, so no frontend API URL is required. For local development, set
+`VITE_API_URL=http://localhost:5002/api` if the frontend and backend run separately.

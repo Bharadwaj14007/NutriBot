@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Utensils, Loader2, Save } from 'lucide-react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { API_BASE_URL } from '../lib/api';
 
 const DietPlanner = () => {
   const [loading, setLoading] = useState(false);
@@ -13,7 +14,7 @@ const DietPlanner = () => {
       const token = localStorage.getItem('token');
       // Simulate calling Gemini for a plan
       const res = await axios.post(
-        'http://localhost:5002/api/chat',
+        `${API_BASE_URL}/chat`,
         { message: "Generate a daily diet plan for weight loss. You MUST output ONLY valid JSON without any markdown formatting. The JSON must have this exact structure: { \"breakfast\": { \"name\": \"string\", \"calories\": 0, \"protein\": 0, \"carbs\": 0, \"fats\": 0 }, \"lunch\": { \"name\": \"string\", \"calories\": 0, \"protein\": 0, \"carbs\": 0, \"fats\": 0 }, \"dinner\": { \"name\": \"string\", \"calories\": 0, \"protein\": 0, \"carbs\": 0, \"fats\": 0 }, \"snacks\": { \"name\": \"string\", \"calories\": 0, \"protein\": 0, \"carbs\": 0, \"fats\": 0 } }" },
         { headers: { Authorization: `Bearer ${token}` } }
       );
