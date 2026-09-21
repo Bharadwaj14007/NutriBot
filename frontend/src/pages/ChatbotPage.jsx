@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Bot, Send, User, Loader2 } from 'lucide-react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import { API_BASE_URL } from '../lib/api';
 
 const ChatbotPage = () => {
   const [messages, setMessages] = useState([
@@ -30,7 +31,7 @@ const ChatbotPage = () => {
     try {
       const token = localStorage.getItem('token');
       const res = await axios.post(
-        'http://localhost:5002/api/chat',
+        `${API_BASE_URL}/chat`,
         { message: input },
         { headers: { Authorization: `Bearer ${token}` } }
       );
