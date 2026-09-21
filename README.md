@@ -17,7 +17,7 @@ NutriBot is a full-stack AI-powered web application designed to act as your pers
 
 ### Prerequisites
 - Node.js installed on your machine.
-- MongoDB running locally or a MongoDB Atlas URI.
+- MongoDB running locally or a MongoDB Atlas URI. If you do not have MongoDB installed, the backend automatically spins up a temporary in-memory MongoDB instance for local testing.
 - Google Gemini API Key.
 
 ### 1. Backend Setup
